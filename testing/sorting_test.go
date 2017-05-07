@@ -5,10 +5,11 @@
 package testing
 
 import (
-	"testing"
-	"math/rand"
-	"time"
 	"fmt"
+	"math/rand"
+	"testing"
+	"time"
+
 	"github.com/ajidar/algorithms/sorting"
 )
 
@@ -18,7 +19,7 @@ func generateRandomArray(length int, max int) []int {
 	rand.Seed(time.Now().UTC().UnixNano())
 	unsorted := make([]int, length)
 	for i := 0; i < length; i++ {
-		unsorted[i] =  rand.Intn(max)
+		unsorted[i] = rand.Intn(max)
 	}
 
 	return unsorted
@@ -29,11 +30,11 @@ func TestMergeSort(t *testing.T) {
 
 	start := time.Now()
 	sorted := sorting.MergeSort(unsorted)
-	elapsed := time.Since(start).Nanoseconds()/1000000
+	elapsed := time.Since(start).Nanoseconds() / 1000000
 
 	for i := 1; i < len(sorted); i++ {
-		if sorted[i] < sorted[i - 1] {
-			t.Fatalf("Output is not sorted. %d is less than %d.", sorted[i], sorted[i - 1])
+		if sorted[i] < sorted[i-1] {
+			t.Fatalf("Output is not sorted. %d is less than %d.", sorted[i], sorted[i-1])
 		}
 	}
 
@@ -45,11 +46,11 @@ func TestQuicksort(t *testing.T) {
 
 	start := time.Now()
 	sorted := sorting.Quicksort(unsorted)
-	elapsed := time.Since(start).Nanoseconds()/1000000
+	elapsed := time.Since(start).Nanoseconds() / 1000000
 
 	for i := 1; i < len(sorted); i++ {
-		if sorted[i] < sorted[i - 1] {
-			t.Fatalf("Output is not sorted. %d is less than %d.", sorted[i], sorted[i - 1])
+		if sorted[i] < sorted[i-1] {
+			t.Fatalf("Output is not sorted. %d is less than %d.", sorted[i], sorted[i-1])
 		}
 	}
 
@@ -61,11 +62,11 @@ func TestQuicksortInPlace(t *testing.T) {
 
 	start := time.Now()
 	sorting.QuicksortInPlace(unsorted)
-	elapsed := time.Since(start).Nanoseconds()/1000000
+	elapsed := time.Since(start).Nanoseconds() / 1000000
 
 	for i := 1; i < len(unsorted); i++ {
-		if unsorted[i] < unsorted[i - 1] {
-			t.Fatalf("Output is not sorted. %d is less than %d.", unsorted[i], unsorted[i - 1])
+		if unsorted[i] < unsorted[i-1] {
+			t.Fatalf("Output is not sorted. %d is less than %d.", unsorted[i], unsorted[i-1])
 		}
 	}
 

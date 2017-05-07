@@ -39,7 +39,7 @@ func Quicksort(original []int) []int {
 // This outward facing function proxies to the internal version.
 func QuicksortInPlace(input []int) {
 
-	quicksortInPlaceInternal(input, 0, len(input) - 1)
+	quicksortInPlaceInternal(input, 0, len(input)-1)
 }
 
 // QuicksortInPlace is a destructive variation of Quicksort which alters the input array directly, and sorts it.
@@ -53,10 +53,10 @@ func quicksortInPlaceInternal(input []int, start int, end int) {
 	pivotIndex := partition(input, start, end)
 
 	// Sort the left of the pivot.
-	quicksortInPlaceInternal(input, start, pivotIndex - 1)
+	quicksortInPlaceInternal(input, start, pivotIndex-1)
 
 	// Sort the right of the pivot.
-	quicksortInPlaceInternal(input, pivotIndex + 1, end)
+	quicksortInPlaceInternal(input, pivotIndex+1, end)
 }
 
 // partition is a utility function used by QuicksortInPlace.
@@ -67,7 +67,7 @@ func quicksortInPlaceInternal(input []int, start int, end int) {
 func partition(input []int, start int, end int) int {
 
 	// Randomly choose a pivot and temporarily stash it at the front of the segment.
-	pivotIndex := rand.Intn(end - start) + start
+	pivotIndex := rand.Intn(end-start) + start
 	pivot := input[pivotIndex]
 	input[start], input[pivotIndex] = input[pivotIndex], input[start]
 
@@ -123,7 +123,7 @@ func MergeSort(unsorted []int) []int {
 }
 
 // merge is a utility function used  by MergeSort to merge two sorted arrays.
-func merge (left []int, right []int) []int {
+func merge(left []int, right []int) []int {
 
 	if len(left) == 0 {
 		return right
