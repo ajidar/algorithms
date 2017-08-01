@@ -1,16 +1,10 @@
-// Tests for sorting algorithms.
-// All tests run against randomly generated 500000 element arrays with a max of 1000000.
-// Algorithm timings (ms) are also outputed.
-
-package testing
+package sorting
 
 import (
 	"fmt"
 	"math/rand"
 	"testing"
 	"time"
-
-	"github.com/ajidar/algorithms/sorting"
 )
 
 // generateRandomArray returns an unsorted array of random integers, of the requested length.
@@ -29,7 +23,7 @@ func TestMergeSort(t *testing.T) {
 	unsorted := generateRandomArray(500000, 1000000)
 
 	start := time.Now()
-	sorted := sorting.MergeSort(unsorted)
+	sorted := MergeSort(unsorted)
 	elapsed := time.Since(start).Nanoseconds() / 1000000
 
 	for i := 1; i < len(sorted); i++ {
@@ -45,7 +39,7 @@ func TestQuicksort(t *testing.T) {
 	unsorted := generateRandomArray(500000, 1000000)
 
 	start := time.Now()
-	sorted := sorting.Quicksort(unsorted)
+	sorted := Quicksort(unsorted)
 	elapsed := time.Since(start).Nanoseconds() / 1000000
 
 	for i := 1; i < len(sorted); i++ {
@@ -61,7 +55,7 @@ func TestQuicksortInPlace(t *testing.T) {
 	unsorted := generateRandomArray(500000, 1000000)
 
 	start := time.Now()
-	sorting.QuicksortInPlace(unsorted)
+	QuicksortInPlace(unsorted)
 	elapsed := time.Since(start).Nanoseconds() / 1000000
 
 	for i := 1; i < len(unsorted); i++ {
