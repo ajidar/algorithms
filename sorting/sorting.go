@@ -6,6 +6,55 @@ import (
 	"math/rand"
 )
 
+// InsertionSort is an n^2 sorting algorithm where the the input is sorted from left to right.
+// An element is is inserted into the appropriate place on the left side of the list, then we move
+// on to the next element.
+func InsertionSort(input []int) {
+	if len(input) < 2 {
+		return
+	}
+
+	// Start from the second element in the list.
+	for i := 1; i < len(input); i++ {
+
+		// Keep moving the element backwards (by swapping it with the previous element) until it is in the correct spot.
+		for j := i; j > 0; j-- {
+			if input[j] < input[j-1] {
+				input[j], input[j-1] = input[j-1], input[j]
+			} else {
+				break
+			}
+		}
+	}
+}
+
+// SelectionSort is an n^2 sorting algorithm where the input is sorted by continually finding the smallest element,
+// and moving it to the left side of the list.
+func SelectionSort(input []int) {
+	if len(input) < 2 {
+		return
+	}
+
+	// Everything between 0 and i is already sorted.
+	for i := 0; i < len(input); i++ {
+
+		// Starting from the first element in the unsorted part of the list, find the smallest element remaining.
+		j := i
+		smallest := j
+		j++
+		for j < len(input) {
+			if input[j] < input[smallest] {
+				smallest = j
+			}
+
+			j++
+		}
+
+		// Stick the next smallest element at the end of the already sorted portion.
+		input[i], input[smallest] = input[smallest], input[i]
+	}
+}
+
 // Quicksort is a sorting algorithm that operates by picking a pivot element and then placing the
 // lesser elements to the left, and the greater elements to the right.
 // The left and right sides are then sorted recursively.
