@@ -55,14 +55,17 @@ func SelectionSort(input []int) {
 	}
 }
 
-// QuicksortInPlace is a destructive variation of Quicksort which alters the input array directly, and sorts it.
-// This outward facing function proxies to the internal version.
+// Quicksort is an implementation of the common in-place Quicksort algorithm.
+// It proxies for an internal function which handles the actual sorting.
 func Quicksort(input []int) {
 
 	quicksortInternal(input, 0, len(input)-1)
 }
 
-// QuicksortInPlace is a destructive variation of Quicksort which alters the input array directly, and sorts it.
+// quicksortInternal handles the actual machinations of the Quicksort algorithm.
+// It takes an unsorted array, and the start and end indexes of the current sub-array.
+// It partitions the elements of the sub-array around a random pivot,
+// and then recursively process the sub-arrays to the left and right of the pivot.
 func quicksortInternal(input []int, start int, end int) {
 
 	if end <= start {
