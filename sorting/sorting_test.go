@@ -39,23 +39,7 @@ func TestQuicksort(t *testing.T) {
 	unsorted := generateRandomArray(500000, 1000000)
 
 	start := time.Now()
-	sorted := Quicksort(unsorted)
-	elapsed := time.Since(start).Nanoseconds() / 1000000
-
-	for i := 1; i < len(sorted); i++ {
-		if sorted[i] < sorted[i-1] {
-			t.Fatalf("Output is not sorted. %d is less than %d.", sorted[i], sorted[i-1])
-		}
-	}
-
-	fmt.Printf("Quicksort: %d ms\n", elapsed)
-}
-
-func TestQuicksortInPlace(t *testing.T) {
-	unsorted := generateRandomArray(500000, 1000000)
-
-	start := time.Now()
-	QuicksortInPlace(unsorted)
+	Quicksort(unsorted)
 	elapsed := time.Since(start).Nanoseconds() / 1000000
 
 	for i := 1; i < len(unsorted); i++ {
@@ -65,6 +49,22 @@ func TestQuicksortInPlace(t *testing.T) {
 	}
 
 	fmt.Printf("Quicksort In Place: %d ms\n", elapsed)
+}
+
+func TestQuicksortSimple(t *testing.T) {
+	unsorted := generateRandomArray(500000, 1000000)
+
+	start := time.Now()
+	sorted := QuicksortSimple(unsorted)
+	elapsed := time.Since(start).Nanoseconds() / 1000000
+
+	for i := 1; i < len(sorted); i++ {
+		if sorted[i] < sorted[i-1] {
+			t.Fatalf("Output is not sorted. %d is less than %d.", sorted[i], sorted[i-1])
+		}
+	}
+
+	fmt.Printf("Quicksort: %d ms\n", elapsed)
 }
 
 func TestInsertionSort(t *testing.T) {

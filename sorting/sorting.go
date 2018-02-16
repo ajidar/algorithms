@@ -55,44 +55,15 @@ func SelectionSort(input []int) {
 	}
 }
 
-// Quicksort is a sorting algorithm that operates by picking a pivot element and then placing the
-// lesser elements to the left, and the greater elements to the right.
-// The left and right sides are then sorted recursively.
-// This method is NOT in place. Each call creates 2 new lists and appends them together.
-func Quicksort(original []int) []int {
-
-	if len(original) < 2 {
-		return original
-	}
-
-	pivot := original[0]
-	left := make([]int, 0)
-	right := make([]int, 0)
-
-	for i := 1; i < len(original); i++ {
-		if original[i] < pivot {
-			left = append(left, original[i])
-		} else {
-			right = append(right, original[i])
-		}
-	}
-
-	left = Quicksort(left)
-	right = Quicksort(right)
-	left = append(left, pivot)
-
-	return append(left, right...)
-}
-
 // QuicksortInPlace is a destructive variation of Quicksort which alters the input array directly, and sorts it.
 // This outward facing function proxies to the internal version.
-func QuicksortInPlace(input []int) {
+func Quicksort(input []int) {
 
-	quicksortInPlaceInternal(input, 0, len(input)-1)
+	quicksortInternal(input, 0, len(input)-1)
 }
 
 // QuicksortInPlace is a destructive variation of Quicksort which alters the input array directly, and sorts it.
-func quicksortInPlaceInternal(input []int, start int, end int) {
+func quicksortInternal(input []int, start int, end int) {
 
 	if end <= start {
 		return
@@ -102,13 +73,13 @@ func quicksortInPlaceInternal(input []int, start int, end int) {
 	pivotIndex := partition(input, start, end)
 
 	// Sort the left of the pivot.
-	quicksortInPlaceInternal(input, start, pivotIndex-1)
+	quicksortInternal(input, start, pivotIndex-1)
 
 	// Sort the right of the pivot.
-	quicksortInPlaceInternal(input, pivotIndex+1, end)
+	quicksortInternal(input, pivotIndex+1, end)
 }
 
-// partition is a utility function used by QuicksortInPlace.
+// partition is a utility function used by Quicksort.
 // Given an array, a start index, and an end index, it partitions the elements in the array around a randomly
 // chosen pivot.
 // Lesser elements will be placed to the left of the pivot, others to the right.
@@ -153,6 +124,37 @@ func partition(input []int, start int, end int) int {
 
 	// Return the index of the pivot.
 	return right
+}
+
+// QuicksortSimple is a simplified, and less efficient, version of Quicksort.
+// It is NOT done in place, and does not use a separate partition function.
+// Like the in place Quicksort, the sorting algorithm operates by picking a pivot element and then placing the
+// lesser elements to the left, and the greater elements to the right.
+// The left and right sides are then sorted recursively.
+// Each call creates 2 new lists and appends them together.
+func QuicksortSimple(original []int) []int {
+
+	if len(original) < 2 {
+		return original
+	}
+
+	pivot := original[0]
+	left := make([]int, 0)
+	right := make([]int, 0)
+
+	for i := 1; i < len(original); i++ {
+		if original[i] < pivot {
+			left = append(left, original[i])
+		} else {
+			right = append(right, original[i])
+		}
+	}
+
+	left = QuicksortSimple(left)
+	right = QuicksortSimple(right)
+	left = append(left, pivot)
+
+	return append(left, right...)
 }
 
 // MergeSort is a sorting algorithm based on the idea of repeatedly merging sorted lists.
