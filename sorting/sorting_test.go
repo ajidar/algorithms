@@ -35,6 +35,13 @@ func TestMergeSort(t *testing.T) {
 	fmt.Printf("Merge Sort: %d ms\n", elapsed)
 }
 
+func BenchmarkMergeSort(b *testing.B) {
+	for x := 0; x < b.N; x++ {
+		unsorted := generateRandomArray(500000, 1000000)
+		MergeSort(unsorted)
+	}
+}
+
 func TestQuicksort(t *testing.T) {
 	unsorted := generateRandomArray(500000, 1000000)
 
@@ -51,6 +58,13 @@ func TestQuicksort(t *testing.T) {
 	fmt.Printf("Quicksort In Place: %d ms\n", elapsed)
 }
 
+func BenchmarkQuicksort(b *testing.B) {
+	for x := 0; x < b.N; x++ {
+		unsorted := generateRandomArray(500000, 1000000)
+		Quicksort(unsorted)
+	}
+}
+
 func TestQuicksortSimple(t *testing.T) {
 	unsorted := generateRandomArray(500000, 1000000)
 
@@ -65,6 +79,13 @@ func TestQuicksortSimple(t *testing.T) {
 	}
 
 	fmt.Printf("Quicksort: %d ms\n", elapsed)
+}
+
+func BenchmarkQuicksortSimple(b *testing.B) {
+	for x := 0; x < b.N; x++ {
+		unsorted := generateRandomArray(500000, 1000000)
+		QuicksortSimple(unsorted)
+	}
 }
 
 func TestInsertionSort(t *testing.T) {
@@ -86,6 +107,13 @@ func TestInsertionSort(t *testing.T) {
 	fmt.Printf("Insertion Sort: %d ms\n", elapsed)
 }
 
+func BenchmarkInsertionSort(b *testing.B) {
+	for x := 0; x < b.N; x++ {
+		unsorted := generateRandomArray(500000, 1000000)
+		InsertionSort(unsorted)
+	}
+}
+
 func TestSelectionSort(t *testing.T) {
 
 	fmt.Println("Warning: Starting selection sort. This could take a while.")
@@ -103,4 +131,11 @@ func TestSelectionSort(t *testing.T) {
 	}
 
 	fmt.Printf("Selection Sort: %d ms\n", elapsed)
+}
+
+func BenchmarkSelectionSort(b *testing.B) {
+	for x := 0; x < b.N; x++ {
+		unsorted := generateRandomArray(500000, 1000000)
+		SelectionSort(unsorted)
+	}
 }
