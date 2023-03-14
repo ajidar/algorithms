@@ -6,8 +6,8 @@ import (
 	"math/rand"
 )
 
-// InsertionSort is an n^2 sorting algorithm where the the input is sorted from left to right.
-// An element is is inserted into the appropriate place on the left side of the list, then we move
+// InsertionSort is an n^2 sorting algorithm where the input is sorted from left to right.
+// An element is inserted into the appropriate place on the left side of the list, then we move
 // on to the next element.
 func InsertionSort(input []int) {
 	if len(input) < 2 {
@@ -161,7 +161,7 @@ func QuicksortSimple(original []int) []int {
 }
 
 // MergeSort is a sorting algorithm based on the idea of repeatedly merging sorted lists.
-// The input is continually split into smaller and smaller lists, until they becomes lists of one.
+// The input is continually split into smaller and smaller lists, until they become lists of one.
 // These lists are then merged back together.
 func MergeSort(unsorted []int) []int {
 
